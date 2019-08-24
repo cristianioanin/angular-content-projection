@@ -1,0 +1,15 @@
+<h2>ng-container</h2>
+
+<p>*ngFor on a div element</p>
+<div *ngFor="let item of items">
+  <div *ngIf="item.id">
+    {{ item.name }}
+  </div>
+</div>
+
+<p>Using ng-container as a wrapper</p>
+<ng-container *ngFor="let item of items">
+  <div *ngIf="item.id">
+    {{ item.name }}
+  </div>
+</ng-container>

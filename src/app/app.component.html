@@ -1,20 +1,54 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<h2>ng-template</h2>
+<div *ngIf="shouldDisplay" class="hello-world">
+  <p>
+    Structural *ngIf element - converted to ng-template inside Angular.
+  </p>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<!-- This will not render anything in the DOM. Angular converts ng-template to diagnostic comments. -->
+<ng-template *ngIf="showMyNgTemplate">
+  <p>
+    Arbitrarily inserted content via ng-template.
+  </p>
+</ng-template>
+
+<!-- First method to get it to work. -->
+<ng-template [ngIf]="showMyNgTemplate">
+  <p>
+    Arbitrarily inserted content via ng-template.
+  </p>
+</ng-template>
+
+<!-- Second method to get it to work. -->
+<ng-template *ngIf="showMyNgTemplate then myNgTemplate"></ng-template>
+<ng-template #myNgTemplate>
+  <p>
+    Some other content via ng-template.
+  </p>
+</ng-template>
+
+<app-product></app-product>
+
+<app-project-content>
+  <div>
+    <p>
+      This is a custom footer projected via ng-content.
+    </p>
+  </div>
+</app-project-content>
+
+<app-multiple-project-content>
+  <h3 multiple-h3>Header for first ng-content</h3>
+  <div multiple-div>Div for second ng-content</div>
+  <span>Span for the third ng-content</span>
+</app-multiple-project-content>
+
+<app-company-page [headerTemplate]="customHeader" [footerTemplate]="customFooter"></app-company-page>
+
+<ng-template #customHeader>
+  <div class="custom-class">Custom header content...</div>
+</ng-template>
+
+<ng-template #customFooter>
+  <div class="custom-class">Custom footer content...</div>
+</ng-template>

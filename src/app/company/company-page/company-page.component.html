@@ -1,0 +1,50 @@
+<h2>Using *ngTemplateOutlet for content projection</h2>
+
+<div>
+  <ng-container *ngTemplateOutlet="companyLogoTemplate"></ng-container>
+  <h3>Company History</h3>
+  <div>
+    <p>
+      {{ companyHistory }}
+    </p>
+  </div>
+</div>
+<form (ngSubmit)="onSubmit()">
+  <ng-container *ngTemplateOutlet="companyLogoTemplate"></ng-container>
+  <h3>User Info</h3>
+  <div>
+    <label>Name:</label>
+    <input type="text" name="userName" [(ngModel)]="userName">
+  </div>
+  <div>
+    <label>Account:</label>
+    <input type="text" name="accountId" [(ngModel)]="accountId">
+  </div>
+  <button>Submit</button>
+</form>
+<div class="footer">
+  <ng-container *ngTemplateOutlet="companyLogoTemplate"></ng-container>
+</div>
+
+<h2>Custom components with *ngTemplateOutlet</h2>
+
+<div class="heading">
+  <ng-container *ngTemplateOutlet="headerTemplate ? headerTemplate : defaultHeader"></ng-container>
+</div>
+<div class="body">
+  <ng-container *ngTemplateOutlet="bodyTemplate ? bodyTemplate : defaultBody"></ng-container>
+</div>
+<div class="footer">
+  <ng-container *ngTemplateOutlet="footerTemplate ? footerTemplate : defaultFooter"></ng-container>
+</div>
+
+<ng-template #companyLogoTemplate>
+  <div class="company-logo">
+    <img [src]="logoSourceUrl">
+    <label>The MARVEL Company</label>
+  </div>
+</ng-template>
+
+<ng-template #defaultHeader>Some default header...</ng-template>
+<ng-template #defaultBody>Some default body...</ng-template>
+<ng-template #defaultFooter>Some default footer...</ng-template>
